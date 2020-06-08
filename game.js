@@ -1,5 +1,11 @@
-const SNAKE_SPEED = 2;
+import {
+  SNAKE_SPEED,
+  update as updateSnake,
+  draw as drawSnake
+} from "./snake.js";
+
 let lastRenderTime;
+const gameBoard = document.getElementById("game-board");
 
 // game loop function
 function main(currentTime) {
@@ -18,6 +24,12 @@ function main(currentTime) {
 // initiating game loop function for the first time
 window.requestAnimationFrame(main);
 
-function update() {}
+// update() will contain all the logic for updating the state of the game
+function update() {
+  updateSnake();
+}
 
-function draw() {}
+// draw() will visualise the state of the game
+function draw() {
+  drawSnake(gameBoard);
+}
