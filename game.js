@@ -31,5 +31,6 @@ function update() {
 
 // draw() will visualise the state of the game
 function draw() {
+  gameBoard.innerHTML = ""; // clearing the board before each draw
   drawSnake(gameBoard);
 }
