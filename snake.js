@@ -1,19 +1,19 @@
+import { getInputDirection } from "./input.js";
+
 export const SNAKE_SPEED = 2;
-const snakeBody = [
-  { x: 10, y: 11 },
-  { x: 11, y: 11 },
-  { x: 12, y: 11 }
-]; // starting position of snake in the grid
+const snakeBody = [{ x: 11, y: 11 }]; // starting position of snake in the grid
 
 export function update() {
+  const inputDirection = getInputDirection();
+
   // moving all but last body parts in the array up to mimic movement
   for (let i = snakeBody.length - 2; i >= 0; i--) {
     snakeBody[i + 1] = { ...snakeBody[i] };
   }
 
   // for now manually assigning the new direction of head
-  snakeBody[0].x += 1;
-  snakeBody[0].y += 0;
+  snakeBody[0].x += inputDirection.x;
+  snakeBody[0].y += inputDirection.y;
 }
 
 export function draw(gameBoard) {
