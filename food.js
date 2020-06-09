@@ -1,12 +1,13 @@
-import { onSnake, expandSnake } from "./snake.js";
+import { onSnakeHead, onSnake, expandSnake } from "./snake.js";
+import { randomGridPosition } from "./grid.js";
 
 const EXPANSION_RATE = 1;
-let food = { x: 10, y: 15 };
+let food = getRandomFoodPosition();
 
 export function update() {
-  if (onSnake(food)) {
+  if (onSnakeHead(food)) {
     expandSnake(EXPANSION_RATE);
-    food = { x: 20, y: 12 };
+    food = getRandomFoodPosition();
   }
 }
 
@@ -18,4 +19,13 @@ export function draw(gameBoard) {
   foodPiece.classList.add("food");
   // appending div that represents food piece to the dom
   gameBoard.appendChild(foodPiece);
+}
+
+function getRandomFoodPosition() {
+  let newFoodPosition;
+
+  while (newFoodPosition == null || onSnake(newFoodPosition)) {
+    newFoodPosition = randomGridPosition();
+  }
+  return newFoodPosition;
 }

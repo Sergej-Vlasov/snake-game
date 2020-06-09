@@ -36,6 +36,11 @@ export function expandSnake(amount) {
 }
 
 export function onSnake(position) {
+  // checking if given position is matching with any of the snake body part position
+  return snakeBody.some(part => matchingPositions(position, part));
+}
+
+export function onSnakeHead(position) {
   // checking if food piece's position matches to any of the body part position
   return matchingPositions(position, snakeBody[0]);
 }
