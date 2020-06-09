@@ -5,6 +5,8 @@ const snakeBody = [{ x: 11, y: 11 }]; // starting position of snake in the grid
 let newParts = 0;
 
 export function update() {
+  addParts(); // adding new snake body parts if there are any
+
   const inputDirection = getInputDirection();
 
   // moving all but last body parts in the array up to mimic movement
@@ -34,11 +36,19 @@ export function expandSnake(amount) {
 }
 
 export function onSnake(position) {
-  return snakeBody.some(part => {
-    return matchingPositions(part, position);
-  });
+  // checking if food piece's position matches to any of the body part position
+  return matchingPositions(position, snakeBody[0]);
 }
 
 function matchingPositions(pos1, pos2) {
   return pos1.x === pos2.x && pos1.y === pos2.y;
+}
+
+function addParts() {
+  for (let i = 0; i < newParts; i++) {
+    // appending a duplicate of the last snake element to body array
+    snakeBody.push({ ...snakeBody[snakeBody.length - 1] });
+  }
+
+  newParts = 0;
 }
