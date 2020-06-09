@@ -2,6 +2,7 @@ import { getInputDirection } from "./input.js";
 
 export const SNAKE_SPEED = 5;
 const snakeBody = [{ x: 11, y: 11 }]; // starting position of snake in the grid
+let newParts = 0;
 
 export function update() {
   const inputDirection = getInputDirection();
@@ -26,4 +27,18 @@ export function draw(gameBoard) {
     // appending div that represents 1 body part to the dom
     gameBoard.appendChild(snakeBodyPart);
   });
+}
+
+export function expandSnake(amount) {
+  newParts += amount;
+}
+
+export function onSnake(position) {
+  return snakeBody.some(part => {
+    return matchingPositions(part, position);
+  });
+}
+
+function matchingPositions(pos1, pos2) {
+  return pos1.x === pos2.x && pos1.y === pos2.y;
 }
