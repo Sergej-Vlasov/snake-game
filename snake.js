@@ -35,14 +35,25 @@ export function expandSnake(amount) {
   newParts += amount;
 }
 
-export function onSnake(position) {
+export function onSnake(position, { ignoreHead = false } = {}) {
   // checking if given position is matching with any of the snake body part position
-  return snakeBody.some(part => matchingPositions(position, part));
+  return snakeBody.some((part, index) => {
+    if (ignoreHead && index === 0) return false;
+    return matchingPositions(position, part);
+  });
+}
+
+export function getSnakeHead() {
+  return snakeBody[0];
+}
+
+export function snakeIntersection() {
+  return onSnake(getSnakeHead(), { ignoreHead: true });
 }
 
 export function onSnakeHead(position) {
   // checking if food piece's position matches to any of the body part position
-  return matchingPositions(position, snakeBody[0]);
+  return matchingPositions(position, getSnakeHead());
 }
 
 function matchingPositions(pos1, pos2) {
