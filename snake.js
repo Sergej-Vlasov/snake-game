@@ -1,6 +1,6 @@
 import { getInputDirection } from "./input.js";
 
-export const SNAKE_SPEED = 2;
+export const SNAKE_SPEED = 5;
 const snakeBody = [{ x: 11, y: 11 }]; // starting position of snake in the grid
 
 export function update() {
@@ -11,7 +11,7 @@ export function update() {
     snakeBody[i + 1] = { ...snakeBody[i] };
   }
 
-  // for now manually assigning the new direction of head
+  // assigning the new position of head according to input
   snakeBody[0].x += inputDirection.x;
   snakeBody[0].y += inputDirection.y;
 }

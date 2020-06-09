@@ -4,6 +4,8 @@ import {
   draw as drawSnake
 } from "./snake.js";
 
+import { update as updateFood, draw as drawFood } from "./food.js";
+
 let lastRenderTime;
 const gameBoard = document.getElementById("game-board");
 
@@ -27,10 +29,12 @@ window.requestAnimationFrame(main);
 // update() will contain all the logic for updating the state of the game
 function update() {
   updateSnake();
+  updateFood();
 }
 
 // draw() will visualise the state of the game
 function draw() {
   gameBoard.innerHTML = ""; // clearing the board before each draw
   drawSnake(gameBoard);
+  drawFood(gameBoard);
 }
