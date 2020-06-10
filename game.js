@@ -25,7 +25,6 @@ function main(currentTime) {
   if (secondsSinceLastRender < 1 / SNAKE_SPEED) return; // execute update() and draw() login only when we reach the threshold
 
   lastRenderTime = currentTime;
-  console.log("Render");
 
   update();
 

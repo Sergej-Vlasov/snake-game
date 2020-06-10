@@ -8,6 +8,7 @@ export function randomGridPosition() {
 }
 
 export function outsideGrid(position) {
+  // valid grid positions are from 1 to GRID_SIZE
   return (
     position.x < 1 ||
     position.x > GRID_SIZE ||

@@ -24,6 +24,7 @@ export function draw(gameBoard) {
 function getRandomFoodPosition() {
   let newFoodPosition;
 
+  // returning random position as long as it doesn't exist or overlap with snake body
   while (newFoodPosition == null || onSnake(newFoodPosition)) {
     newFoodPosition = randomGridPosition();
   }
